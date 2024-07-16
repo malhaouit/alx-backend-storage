@@ -18,10 +18,12 @@ def log_stats():
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
         method_count = nginx.count_documents({'method': method})
-        print("    method {}: {}".format(method, method_count))
+        print("\tmethod {}: {}".format(method, method_count))
 
-    number = nginx.count_documents({'path': '/status', 'method': 'GET'})
-    print("{} status check".format(number))
+    num_status_check = nginx.count_documents(
+            {'path': '/status', 'method': 'GET'}
+            )
+    print("{} status check".format(num_status_check))
 
 
 if __name__ == "__main__":
